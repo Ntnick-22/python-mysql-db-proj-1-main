@@ -3,18 +3,22 @@ import pymysql
 
 app = Flask(__name__)
 
+
 def get_db_connection():
-    connection = pymysql.connect(host='mydb.cylck8yh5jkc.eu-central-1.rds.amazonaws.com',  # Replace with your RDS endpoint
+    connection = pymysql.connect(host="mydb.c7240amye8by.eu-west-1.rds.amazonaws.com",  # Replace with your RDS endpoint
                                  user='dbuser',      # Replace with your RDS username
                                  password='dbpassword',  # Replace with your RDS password
                                  db='devprojdb',   # Replace with your database name
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
+
     return connection
+
 
 @app.route('/health')
 def health():
     return "Up & Running"
+
 
 @app.route('/create_table')
 def create_table():
@@ -31,6 +35,7 @@ def create_table():
     connection.close()
     return "Table created successfully"
 
+
 @app.route('/insert_record', methods=['POST'])
 def insert_record():
     name = request.json['name']
@@ -42,6 +47,7 @@ def insert_record():
     connection.close()
     return "Record inserted successfully"
 
+
 @app.route('/data')
 def data():
     connection = get_db_connection()
@@ -52,9 +58,12 @@ def data():
     return jsonify(result)
 
 # UI route
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
