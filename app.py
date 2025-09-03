@@ -13,13 +13,11 @@ logger = logging.getLogger(__name__)
 
 
 def get_db_connection():
-    # Use environment variables for security
     connection = pymysql.connect(
-        host=os.environ.get(
-            'DB_HOST', 'mydb.c36c04gwo2cv.eu-central-1.rds.amazonaws.com'),
-        user=os.environ.get('DB_USER', 'dbuser'),
-        password=os.environ.get('DB_PASSWORD', 'dbpassword'),
-        db=os.environ.get('DB_NAME', 'devprojdb'),
+        host="mydb.c36c04gwo2cv.eu-central-1.rds.amazonaws.com",
+        user='dbuser',
+        password='dbpassword',
+        db='devprojdb',
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
     )
@@ -348,4 +346,4 @@ def internal_error(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0')
