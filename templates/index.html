@@ -562,7 +562,10 @@
             document.getElementById('pageInfo').textContent = `Page ${pagination.page} of ${pagination.pages}`;
             document.getElementById('paginationContainer').style.display = pagination.pages > 1 ? 'flex' : 'none';
         }
+function changePage(page) {
+    if (page >= 1 && page <= totalPages) {
+        loadData(page); // This is fine
+    }
+}
+</script>
 
-        function changePage(page) {
-            if (page >= 1 && page <= totalPages) {
-                loadData(page);
