@@ -4,10 +4,10 @@ from datetime import datetime
 import os
 import logging
 from functools import wraps
-from dotenv import load_dotenv
+
 
 app = Flask(__name__)
-load_dotenv()
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def get_db_connection():
     connection = pymysql.connect(
-        host=os.getenv('RDS_ENDPOINT', 'localhost'),  # Read from environment
+        host="mydb.c36c04gwo2cv.eu-central-1.rds.amazonaws.com",  # Keep this hardcoded
         user='dbuser',
         password='dbpassword',
         db='devprojdb',
